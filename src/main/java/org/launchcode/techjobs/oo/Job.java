@@ -12,6 +12,7 @@ public class Job {
     private Location location;
     private PositionType positionType;
     private CoreCompetency coreCompetency;
+    private int emptyFields;
 
     // TODO: Add two constructors - one to initialize a unique ID and a second to initialize the
     //  other five fields. The second constructor should also call the first in order to initialize
@@ -24,6 +25,7 @@ public class Job {
     public Job(String name, Employer employerVar, Location locationVar, PositionType positionVar, CoreCompetency coreVar){
         this();
 
+        this.name = name;
         employer = employerVar;
         location = locationVar;
         positionType = positionVar;
@@ -91,5 +93,30 @@ public class Job {
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
+    }
+
+    public String checkEmpty(String chk){
+        if(chk.isBlank()){
+            this.emptyFields++;
+            return "Data not available";
+        } else {
+            return chk;
+        }
+    }
+    @Override
+    public String toString() {
+        String returnStr = "\n" +
+                "ID: " + id + "\n" +
+                "Name: " + checkEmpty(name) + "\n" +
+                "Employer: " + checkEmpty(employer.getValue()) + "\n" +
+                "Location: " + checkEmpty(location.getValue()) + "\n" +
+                "Position Type: " + checkEmpty(positionType.getValue()) + "\n" +
+                "Core Competency: " + checkEmpty(coreCompetency.getValue()) + "\n";
+
+        if(this.emptyFields == 5){
+            return "OOPS! This job does not seem to exist.";
+        } else {
+            return returnStr;
+        }
     }
 }

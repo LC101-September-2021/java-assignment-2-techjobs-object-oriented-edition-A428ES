@@ -11,10 +11,7 @@ public class PositionType extends JobField {
     // TODO: Add a custom toString() method that returns the data stored in 'value'.
     @Override
     public String toString() {
-        return "PositionType{" +
-                "id=" + this.getId() +
-                ", value='" + this.getValue() + '\'' +
-                '}';
+        return this.getValue();
     }
 
 

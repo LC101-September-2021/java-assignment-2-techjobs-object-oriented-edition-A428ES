@@ -5,6 +5,7 @@ import org.junit.runners.JUnit4;
 import org.junit.*;
 import static org.junit.Assert.*;
 import org.launchcode.techjobs.oo.*;
+import java.util.*;
 
 /**
  * Created by LaunchCode
@@ -22,7 +23,10 @@ public class JobTest {
 
     @Test
     public void testSettingJobId() {
-        assertFalse(jobsTest.equals(jobsTestTwo));
+        Job jobTestOne = new Job();
+        Job jobTestTwo = new Job();
+
+        assertEquals(jobTestOne.getId(), jobTestTwo.getId());
     }
 
     @Test
@@ -35,10 +39,11 @@ public class JobTest {
         assertTrue(newJob.getPositionType() instanceof PositionType);
         assertTrue(newJob.getCoreCompetency() instanceof CoreCompetency);
 
-        assertTrue(newJob.getEmployer().getValue().equals("ACME"));
-        assertTrue(newJob.getLocation().getValue().equals("Desert"));
-        assertTrue(newJob.getPositionType().getValue().equals("Quality control"));
-        assertTrue(newJob.getCoreCompetency().getValue().equals("Persistence"));
+        assertEquals("Product tester", newJob.getName());
+        assertEquals("ACME", newJob.getEmployer().getValue());
+        assertEquals("Desert", newJob.getEmployer().getValue());
+        assertEquals("Quality control", newJob.getEmployer().getValue());
+        assertEquals("Persistence", newJob.getEmployer().getValue());
     }
 
     @Test
@@ -53,7 +58,7 @@ public class JobTest {
     }
 
     @Test
-    public void testToString(){
+    public void testToStringStartsAndEndsWithNewLine(){
         Job newJobOne = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
@@ -61,10 +66,13 @@ public class JobTest {
 
         assertTrue(splitString[0].isBlank());
         assertTrue(splitString[splitString.length-1].isBlank());
+
+        assertEquals('\n', '\n');
+        assertEquals('\n', '\n');
     }
 
     @Test
-    public void testFields(){
+    public void testToStringContainsCorrectLabelsAndData(){
         Job newJobOne = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
@@ -77,10 +85,11 @@ public class JobTest {
                 "Core Competency: Persistence\n";
 
         assertTrue(newJobOne.toString().equals((compareStr)));
+        assertEquals(compareStr, newJobOne.toString());
     }
 
     @Test
-    public void emptyField(){
+    public void testToStringHandlesEmptyField(){
         Job newJobOne = new Job("Product tester", new Employer(""), new Location("Desert"),
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
@@ -93,6 +102,7 @@ public class JobTest {
                 "Core Competency: Persistence\n";
 
         assertTrue(newJobOne.toString().equals(compareStr));
+        assertEquals(compareStr, newJobOne.toString());
     }
 
     @Test

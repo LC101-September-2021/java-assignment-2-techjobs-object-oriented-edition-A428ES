@@ -62,13 +62,11 @@ public class JobTest {
         Job newJobOne = new Job("Product tester", new Employer("ACME"), new Location("Desert"),
                 new PositionType("Quality control"), new CoreCompetency("Persistence"));
 
-        String[] splitString = newJobOne.toString().split("\n", -1);
+        int toStrLen = newJobOne.toString().length();
+        String toStr = newJobOne.toString();
 
-        assertTrue(splitString[0].isBlank());
-        assertTrue(splitString[splitString.length-1].isBlank());
-
-        assertEquals('\n', '\n');
-        assertEquals('\n', '\n');
+        assertEquals('\n', toStr.charAt(0));
+        assertEquals('\n', toStr.charAt(toStrLen-1));
     }
 
     @Test

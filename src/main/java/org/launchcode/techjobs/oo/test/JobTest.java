@@ -26,7 +26,7 @@ public class JobTest {
         Job jobTestOne = new Job();
         Job jobTestTwo = new Job();
 
-        assertEquals(jobTestOne.getId(), jobTestTwo.getId());
+        assertNotEquals(jobTestOne.getId(), jobTestTwo.getId());
     }
 
     @Test
@@ -41,9 +41,9 @@ public class JobTest {
 
         assertEquals("Product tester", newJob.getName());
         assertEquals("ACME", newJob.getEmployer().getValue());
-        assertEquals("Desert", newJob.getEmployer().getValue());
-        assertEquals("Quality control", newJob.getEmployer().getValue());
-        assertEquals("Persistence", newJob.getEmployer().getValue());
+        assertEquals("Desert", newJob.getLocation().getValue());
+        assertEquals("Quality control", newJob.getPositionType().getValue());
+        assertEquals("Persistence", newJob.getCoreCompetency().getValue());
     }
 
     @Test
